@@ -12,6 +12,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { LeftBarComponent } from './left-bar/left-bar.component';
 import { RightBarComponent } from './right-bar/right-bar.component';
 import { BlogComponent } from './blog/blog.component';
+import { ContentBlockComponent } from './content-block/content-block.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BlogComponent } from './blog/blog.component';
     ProjectsComponent,
     LeftBarComponent,
     RightBarComponent,
-    BlogComponent
+    BlogComponent,
+    ContentBlockComponent
   ],
   imports: [
     BrowserModule,
