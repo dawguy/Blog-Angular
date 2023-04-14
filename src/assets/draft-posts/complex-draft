@@ -1,8 +1,10 @@
 blog
 Test Draft Post
 ---
-text
+section-header
 Hello world!
+---
+text
 My name is david.
 ---
 text
@@ -14,6 +16,9 @@ A scorpion deer
 ---
 indent
 This is what an indented div looks like.
+---
+section-header
+Code snippets
 ---
 code-clojure
 (prn (str "I did" (inc 2) "lines here!"))

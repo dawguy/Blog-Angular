@@ -5,6 +5,12 @@
   <p></p>
 </div>
 
+<div class="" *ngIf="type == 'section-header'">
+  <div class="text-2xl" *ngIf="lines.length >= 0">
+    {{lines[0]}}
+  </div>
+</div>
+
 <div *ngIf="type == 'image'">
   <div class="flex space-x-2">
     <div class="" *ngIf="lines.length >= 1">
