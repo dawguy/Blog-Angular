@@ -1,1 +1,35 @@
-<p>content-block works!</p>
+<div class="" *ngIf="type == 'text'">
+  <div class="" *ngFor="let s of lines">
+    {{s}}
+  </div>
+  <p></p>
+</div>
+
+<div *ngIf="type == 'image'">
+  <div class="flex space-x-2">
+    <div class="" *ngIf="lines.length >= 1">
+      <img src="/assets/images/{{lines[0]}}"/>
+    </div>
+    <div class="" *ngIf="lines.length >= 2">
+      {{lines[1]}}
+    </div>
+  </div>
+    <p></p>
+</div>
+
+<div class="ml-8" *ngIf="type == 'indent'">
+  <div class="" *ngFor="let s of lines">
+    {{s}}
+  </div>
+  <p></p>
+</div>
+
+<div class="" *ngIf="type == 'code'">
+  <div class="text-lg">
+    [{{subtype}}]
+  </div>
+  <div class="ml-4 italic" *ngFor="let s of lines">
+    {{s}}
+  </div>
+  <p></p>
+</div>
