@@ -5,8 +5,11 @@
     </div>
     <!--  Post Content Here  -->
     <div class="px-2 w-full sm:w-8/12 bg-teal-50">
-      <div *ngFor="let c of content">
-        {{c.lines}}
+      <div *ngIf="post">
+        <div *ngFor="let c of post.content">
+          {{c.type}}
+          {{c.lines}}
+        </div>
       </div>
     </div>
     <div class="hidden sm:flex sm:basis-2/12">

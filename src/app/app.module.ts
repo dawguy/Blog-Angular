@@ -13,6 +13,8 @@ import { LeftBarComponent } from './left-bar/left-bar.component';
 import { RightBarComponent } from './right-bar/right-bar.component';
 import { BlogComponent } from './blog/blog.component';
 import { ContentBlockComponent } from './content-block/content-block.component';
+import {HttpClientModule} from "@angular/common/http";
+import { DraftPostComponent } from './draft-post/draft-post.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +28,15 @@ import { ContentBlockComponent } from './content-block/content-block.component';
     LeftBarComponent,
     RightBarComponent,
     BlogComponent,
-    ContentBlockComponent
+    ContentBlockComponent,
+    DraftPostComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

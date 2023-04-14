@@ -7,41 +7,10 @@ import {Content} from "./content-block/content";
 })
 export class DraftService {
 
-  text: string;
+  constructor() {}
 
-  constructor() {
-    this.text =
-`
-blog
-Test Draft Post
----
-text
-Hello world! my name is david.
----
-text
-My other name is bloodisblue or dawguy.
----
-image
-abcdef.png
----
-indent
-This is what an indented div looks like.
----
-code-clojure
-(prn (str "I did" (inc 2) "lines here!"))
----
-code-typescript
-console.out.println("Yoyo");
-console.out.println("ABC");
----
-text
-Ending with some text.
----
-`
-  }
-
-  getDraftPost(s?: string): Post {
-    let blocks = s ? s.split('---') : this.text.split('---');
+  getDraftPost(s: string): Post {
+    let blocks = s.split('---');
 
     let lines = blocks.map(b => {
       return b.split('\n')
@@ -64,9 +33,9 @@ Ending with some text.
 
     let post = new Post('new-draft-post', content, '', title, type);
 
-    console.log(lines);
-    console.log(content);
-    console.log(post);
+    // console.log(lines);
+    // console.log(content);
+    // console.log(post);
 
     return post;
   }

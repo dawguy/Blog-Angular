@@ -1,0 +1,25 @@
+blog
+Test Draft Post
+---
+text
+Hello world! my name is david.
+---
+text
+My other name is bloodisblue or dawguy.
+---
+image
+abcdef.png
+---
+indent
+This is what an indented div looks like.
+---
+code-clojure
+(prn (str "I did" (inc 2) "lines here!"))
+---
+code-typescript
+console.out.println("Yoyo");
+console.out.println("ABC");
+---
+text
+Ending with some text.
+---

@@ -1,20 +1,20 @@
-import {Component, Input} from '@angular/core';
-import {Content} from "../content-block/content";
-import {HttpClient} from "@angular/common/http";
+import { Component } from '@angular/core';
+import {Post} from "../post/post";
 import {PostServiceService} from "../post-service.service";
 import {ActivatedRoute, Params} from "@angular/router";
-import {Post} from "./post";
+import {DraftService} from "../draft.service";
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  selector: 'app-draft-post',
+  templateUrl: '../post/post.component.html',
+  styleUrls: ['../post/post.component.css']
 })
-export class PostComponent {
+export class DraftPostComponent {
   post: Post;
   fullPost: boolean;
 
   constructor(private postService: PostServiceService,
+              private draftService: DraftService,
               private route: ActivatedRoute) {}
 
   ngOnInit(){
@@ -24,7 +24,7 @@ export class PostComponent {
       if(params['postId'] !== undefined) {
         const id = params['postId'];
         this.fullPost = true;
-        this.postService.getPost(id).subscribe(v => {
+        this.postService.getDraftPost(id).subscribe(v => {
           this.post = v;
         })
       } else {
@@ -33,7 +33,4 @@ export class PostComponent {
       }
     })
   }
-
-
-
 }

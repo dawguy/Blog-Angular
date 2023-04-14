@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import {Content} from "./content-block/content";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError, map, Observable, throwError} from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {catchError, map, Observable, of, throwError} from "rxjs";
+import {Post} from "./post/post";
+import {DraftService} from "./draft.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,29 @@ import {catchError, map, Observable, throwError} from "rxjs";
 export class PostServiceService {
 
   public postUrl = 'http://localhost:8080/posts';
+  public draftPostUrl = '/assets/draft-posts';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private draftService: DraftService) { }
 
-  getPost(postId: string): Observable<Content> {
+  getPost(postId: string): Observable<Post> {
     return this.http
-      .get<Content>(`${this.postUrl}/${postId}`)
+      .get<Post>(`${this.postUrl}/${postId}`)
       .pipe(map(data => data), catchError(this.handleError));
+  }
+
+  getDraftPost(postId: string): Observable<Post> {
+    const opts = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'text/html',
+      }),
+      responseType: 'text' as 'text'
+    };
+
+    return this.http
+      .get(`${this.draftPostUrl}/${postId}`, opts)
+      .pipe(map( data => this.draftService.getDraftPost(data)), catchError(this.handleError));
   }
 
   private handleError(res: HttpErrorResponse | any) {
