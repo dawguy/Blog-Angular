@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { LeftBarComponent } from './left-bar/left-bar.component';
 import { RightBarComponent } from './right-bar/right-bar.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RightBarComponent } from './right-bar/right-bar.component';
     HeaderComponent,
     ProjectsComponent,
     LeftBarComponent,
-    RightBarComponent
+    RightBarComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,
