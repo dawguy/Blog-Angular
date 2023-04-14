@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reimplements browser link behavior */
+.a {
+  @apply underline text-blue-600 hover:text-blue-800 visited:text-purple-600
+}
