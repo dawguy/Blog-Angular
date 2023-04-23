@@ -1,9 +1,20 @@
 FROM node:latest AS builder
-ARG NG_CLI_ANALYTICS="false"
+ARG CONFIGURATION='dev'
+
 RUN mkdir -p /app
 WORKDIR /app
-RUN npm install @angular/cli
+COPY package.json package-lock.json .
 
-FROM builder
-COPY . /app
-CMD npx ng serve --host 0.0.0.0
+RUN npm install --legacy-peer-deps
+
+COPY . .
+
+RUN npm run build --  --output-path=dist --output-hashing=all
+
+FROM nginx:stable-alpine
+EXPOSE 80
+RUN rm -rf /usr/share/nginx/html/*
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]
