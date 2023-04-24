@@ -1,5 +1,4 @@
 FROM node:latest AS builder
-ARG CONFIGURATION='dev'
 
 RUN mkdir -p /app
 WORKDIR /app
