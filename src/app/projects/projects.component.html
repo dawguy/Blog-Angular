@@ -1,1 +1,6 @@
-<p>projects works!</p>
+<div class="px-2 w-full sm:w-8/12 bg-teal-50">
+  <div class="text-3xl">Projects</div>
+  <div *ngFor="let p of posts">
+    <li class="py-1"><a class="a" routerLink="/project/{{p.url}}">{{p.title}}</a></li>
+  </div>
+</div>

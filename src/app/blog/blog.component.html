@@ -1,1 +1,4 @@
-<p>blog works!</p>
+<div class="text-3xl">Blog Posts</div>
+<div *ngFor="let p of posts">
+  <li class="py-1"><a class="a" routerLink="/post/{{p.url}}">{{p.title}}</a></li>
+</div>

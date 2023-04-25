@@ -12,9 +12,9 @@ export class RightBarComponent {
   projectPosts?: Post[];
   blogPosts?: Post[];
 
-  constructor(private postService: PostServiceService) {}
-  ngOnInit() {
-    this.postService.getRecentPosts("blog").subscribe(posts => this.blogPosts = posts);
-    this.postService.getRecentPosts("project").subscribe(posts => this.projectPosts = posts);
+  constructor(private postService: PostServiceService) {
+    this.postService.$recentBlogPosts.subscribe(posts => this.blogPosts = posts);
+    this.postService.$recentProjectPosts.subscribe(posts => this.projectPosts = posts);
   }
+  ngOnInit() {}
 }

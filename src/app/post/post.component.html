@@ -1,19 +1,11 @@
-<div>
-  <div class="flex bg-black">
-    <div class="hidden sm:flex sm:basis-2/12">
-      <app-left-bar class="w-full bg-teal-50"></app-left-bar>
-    </div>
-    <!--  Post Content Here  -->
-    <div class="px-2 w-full sm:w-8/12 bg-teal-50">
-      <div *ngIf="post">
-        <h1 class="text-3xl" *ngIf="post.title">{{post.title}}</h1>
-        <div *ngFor="let c of post.content">
-          <app-content-block [type]="c.type" [lines]="c.lines"></app-content-block>
-        </div>
-      </div>
-    </div>
-    <div class="hidden sm:flex sm:basis-2/12">
-      <app-right-bar class="w-full"></app-right-bar>
-    </div>
+<div *ngIf="post; else no_post_found">
+  <h1 class="text-3xl" *ngIf="post.title">{{post.title}}</h1>
+  <div *ngFor="let c of post.content">
+    <app-content-block [type]="c.type" [lines]="c.lines"></app-content-block>
   </div>
 </div>
+
+<ng-template #no_post_found>
+  <h1 class="text-3xl">Post Not Found</h1>
+  <a routerLink="/blog">Return to blog posts</a>
+</ng-template>

@@ -2,7 +2,12 @@
   <nav>
     <ul class="flex flex-auto bg-gray-400 py-2 items-end" >
       <li><a class="px-1 text-3xl underline hover:text-blue-800" routerLink="/home">David Wright</a></li>
-      <li><a class="px-1 text-xl underline hover:text-blue-800" href="https://www.github.com/dawguy">Github</a></li>
+      <!-- Small Screen -->
+      <li><a class="block px-2 text-l underline hover:text-blue-800" routerLink="/blog">Blog</a></li>
+      <li><a class="block px-2 text-l underline hover:text-blue-800" routerLink="/projects">Projects</a></li>
+      <li><a class="block px-2 text-l underline hover:text-blue-800" routerLink="/about">About</a></li>
+      <!-- Large Screen -->
+      <li><a class="hidden sm:block px-2 text-l underline hover:text-blue-800" href="https://www.github.com/dawguy">Github</a></li>
     </ul>
   </nav>
 </header>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
-import {catchError, map, Observable, of, throwError} from "rxjs";
+import {catchError, map, Observable, of, share, throwError} from "rxjs";
 import {Post} from "./post/post";
 import {DraftService} from "./draft.service";
 import {Content} from "./content-block/content";
@@ -13,8 +13,14 @@ export class PostServiceService {
   public backendUrl = 'http://localhost:8888';
   public draftPostUrl = '/assets/draft-posts';
 
+  $recentBlogPosts : Observable<Post[]>;
+  $recentProjectPosts : Observable<Post[]>;
+
   constructor(private http: HttpClient,
-              private draftService: DraftService) { }
+              private draftService: DraftService) {
+    this.$recentBlogPosts = this.getRecentPosts("blog").pipe(share());
+    this.$recentProjectPosts = this.getRecentPosts("project").pipe(share());
+  }
 
   getPostById(postId: string): Observable<Post> {
     return this.http
@@ -42,10 +48,13 @@ export class PostServiceService {
       .pipe(map( data => this.draftService.getDraftPost(data)), catchError(this.handleError));
   }
 
-  getRecentPosts(type?: string): Observable<Post[]> {
+  getRecentPosts(type?: string, page?: number): Observable<Post[]> {
     let httpParams = new HttpParams();
-    if(type){
+    if(type && type != "all"){
       httpParams = httpParams.append("type", type);
+    }
+    if(page){
+      httpParams = httpParams.append("page", page);
     }
 
     return this.http

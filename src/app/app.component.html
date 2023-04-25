@@ -1,2 +1,14 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<div>
+  <app-header></app-header>
+  <div class="flex bg-black h-screen">
+    <div class="hidden sm:flex sm:basis-1/12">
+      <app-left-bar class="w-full bg-teal-50"></app-left-bar>
+    </div>
+    <div class="px-2 w-full sm:w-10/12 bg-teal-50">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="hidden sm:flex sm:basis-2/12">
+      <app-right-bar class="w-full"></app-right-bar>
+    </div>
+  </div>
+</div>
