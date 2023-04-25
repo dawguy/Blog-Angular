@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Line} from "./line";
 
 @Component({
   selector: 'app-content-block',
@@ -7,7 +8,7 @@ import {Component, Input} from '@angular/core';
 })
 export class ContentBlockComponent {
   @Input() type: string;
-  @Input() lines: string[];
+  @Input() lines: Line[];
   subtype: string = '';
 
   constructor() {}

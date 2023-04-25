@@ -29,7 +29,7 @@ describe('PostServiceService', () => {
     const postId = '1';
     const content = { type: 'text', lines: ['Test post'], orderId: 1 };
 
-    service.getPost(postId).subscribe((data) => {
+    service.getPostById(postId).subscribe((data) => {
       // expect(data).toEqual(content); // TODO: uncomment
     });
 
@@ -42,7 +42,7 @@ describe('PostServiceService', () => {
     const postId = 'invalid-id';
     const errorMessage = 'Server error';
 
-    service.getPost(postId).subscribe(
+    service.getPostById(postId).subscribe(
       () => {},
       (error) => {
         expect(error).toEqual(errorMessage);

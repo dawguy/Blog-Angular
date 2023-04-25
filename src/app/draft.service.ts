@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Post} from "./post/post";
 import {Content} from "./content-block/content";
+import {Line} from "./content-block/line";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class DraftService {
     lines = lines.slice(1);
 
     let content = lines.map((b, i) => {
-      return new Content(b[0], b.slice(1), i);
+      return new Content(b[0], b.slice(1).map(s => new Line(s)), i);
     });
 
     let post = new Post('new-draft-post', content, '', title, type);

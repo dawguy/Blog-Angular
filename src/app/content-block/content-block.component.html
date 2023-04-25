@@ -1,23 +1,23 @@
 <div class="" *ngIf="type == 'text'">
   <div class="" *ngFor="let s of lines">
-    {{s}}
+    {{s.line}}
   </div>
   <p></p>
 </div>
 
 <div class="" *ngIf="type == 'section-header'">
   <div class="text-2xl" *ngIf="lines.length >= 0">
-    {{lines[0]}}
+    {{lines[0].line}}
   </div>
 </div>
 
 <div *ngIf="type == 'image'">
   <div class="flex space-x-2">
     <div class="" *ngIf="lines.length >= 1">
-      <img src="/assets/images/{{lines[0]}}"/>
+      <img src="/assets/images/{{lines[0].line}}"/>
     </div>
     <div class="" *ngIf="lines.length >= 2">
-      {{lines[1]}}
+      {{lines[1].line}}
     </div>
   </div>
     <p></p>
@@ -25,7 +25,7 @@
 
 <div class="ml-8" *ngIf="type == 'indent'">
   <div class="" *ngFor="let s of lines">
-    {{s}}
+    {{s.line}}
   </div>
   <p></p>
 </div>
@@ -35,7 +35,7 @@
     [{{subtype}}]
   </div>
   <div class="ml-4 italic" *ngFor="let s of lines">
-    {{s}}
+    {{s.line}}
   </div>
   <p></p>
 </div>

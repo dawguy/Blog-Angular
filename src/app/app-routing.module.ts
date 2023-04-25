@@ -12,9 +12,9 @@ const routes: Routes = [
   {path: 'home', component: HomepageComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'about', component: AboutMeComponent},
-  {path: 'post/draft/:postId', component: DraftPostComponent},
-  {path: 'post/:postId', component: PostComponent},
-  {path: 'project/:projectId', component: ProjectComponent},
+  {path: 'post/draft/:postUrl', component: DraftPostComponent},
+  {path: 'post/:postUrl', component: PostComponent},
+  {path: 'project/:projectUrl', component: ProjectComponent},
   {path: 'projects', component: ProjectsComponent},
   {path: 'blog', component: BlogComponent}
 ];
