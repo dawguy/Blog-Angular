@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PostComponent } from './post/post.component';
-import { AboutMeComponent } from './about-me/about-me.component';
 import { ProjectComponent } from './project/project.component';
 import { HeaderComponent } from './header/header.component';
 import { ProjectsComponent } from './projects/projects.component';
@@ -21,7 +20,6 @@ import { DraftPostComponent } from './draft-post/draft-post.component';
     AppComponent,
     HomepageComponent,
     PostComponent,
-    AboutMeComponent,
     ProjectComponent,
     HeaderComponent,
     ProjectsComponent,

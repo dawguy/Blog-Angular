@@ -1,14 +1,14 @@
 <aside id="default-sidebar" class="h-screen">
-  <div class="h-full bg-gray-50">
-    <div class="flex flex-col px-2">
-      <div class="py-2">
-        <h1 class="text-xl"><a class="home-link" routerLink="/projects">Recent Projects</a></h1>
+  <div class="h-full">
+    <div class="flex flex-col p-2 space-y-2">
+      <div class="py-1 px-2 rounded bg-gray-200">
+        <h1 class="text-xl"><a class="home-link" routerLink="/projects">Projects</a></h1>
         <div *ngFor="let p of projectPosts">
           <li class="py-1"><a class="a" routerLink="/project/{{p.url}}">{{p.title}}</a></li>
         </div>
       </div>
-      <div class="py-2">
-        <h1 class="text-xl"><a class="home-link" routerLink="/blog">Recent Blog Posts</a></h1>
+      <div class="py-1 px-2 rounded bg-gray-200">
+        <h1 class="text-xl"><a class="home-link" routerLink="/blog">Blog Posts</a></h1>
         <div *ngFor="let b of blogPosts">
           <li class="py-1"><a class="a" routerLink="/post/{{b.url}}">{{b.title}}</a></li>
         </div>
