@@ -1,5 +1,7 @@
 blog
 Test Draft Post
+complex-draft
+Summary here. This post goes over a variety of the content block types and ensures that everything needed for a regular post will work. Something new with this line is adding a summary section allowing us to fully post a draft from the UI.
 ---
 section-header
 Hello world!

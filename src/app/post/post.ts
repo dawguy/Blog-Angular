@@ -8,7 +8,7 @@ export class Post {
   type: string;
   url: string;
 
-  constructor(post_id?: string, content?: Content[], summary?: string, title?: string, type?: string, url?: string) {
+  constructor(content?: Content[], summary?: string, title?: string, type?: string, url?: string, post_id?: string) {
     this.post_id = post_id ?? '';
     this.content = content ?? [];
     this.summary = summary ?? '';

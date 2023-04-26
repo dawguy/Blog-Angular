@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
-import {catchError, map, Observable, of, share, throwError} from "rxjs";
+import {catchError, map, Observable, of, pipe, share, throwError} from "rxjs";
 import {Post} from "./post/post";
 import {DraftService} from "./draft.service";
 import {Content} from "./content-block/content";
@@ -34,7 +34,7 @@ export class PostServiceService {
       .pipe(map(data => data), catchError(this.handleError));
   }
 
-  getDraftPost(postId: string): Observable<Post> {
+  getDraftPostText(postId: string): Observable<string> {
     const opts = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -45,7 +45,7 @@ export class PostServiceService {
 
     return this.http
       .get(`${this.draftPostUrl}/${postId}`, opts)
-      .pipe(map( data => this.draftService.getDraftPost(data)), catchError(this.handleError));
+      .pipe(map( data => data), catchError(this.handleError));
   }
 
   getRecentPosts(type?: string, page?: number): Observable<Post[]> {
@@ -61,6 +61,18 @@ export class PostServiceService {
       .get<Post[]>(`${this.backendUrl}/post/recent`, {
         params: httpParams
       })
+      .pipe(map(data => data), catchError(this.handleError));
+  }
+
+  savePost(postText: string): Observable<any> {
+    const body = {
+      "text": postText
+    };
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+    });
+    return this.http
+      .post<any>(`${this.backendUrl}/post/save`, body, {"headers": headers})
       .pipe(map(data => data), catchError(this.handleError));
   }
 

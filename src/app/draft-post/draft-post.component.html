@@ -1,1 +1,18 @@
-<p>draft-post works!</p>
+<app-post [post]="post"></app-post>
+
+<div class="rounded bg-amber-300 rounded w-full">
+  <div>
+    <h1 class="text-2xl">Summary</h1>
+    <p>{{post.summary}}</p>
+  </div>
+  <div>
+    <h1 class="text-2xl">Type</h1>
+    <p>{{post.type}}</p>
+  </div>
+  <div>
+    <h1 class="text-2xl">URL</h1>
+    <p>{{post.url}}</p>
+  </div>
+</div>
+
+<button class="m-2 btn btn-blue" (click)="savePost(postText)">Publish</button>

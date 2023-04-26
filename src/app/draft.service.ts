@@ -23,8 +23,10 @@ export class DraftService {
       return new Post();
     }
 
-    let type = lines[0][0];
-    let title = lines[0][1];
+    let type = lines[0][0] ?? "blog";
+    let title = lines[0][1] ?? "EMPTY DRAFT TITLE";
+    let url = lines[0][2] ?? "new-draft-post";
+    let summary = lines[0][3] ?? "";
 
     lines = lines.slice(1);
 
@@ -32,7 +34,7 @@ export class DraftService {
       return new Content(b[0], b.slice(1).map(s => new Line(s)), i);
     });
 
-    let post = new Post('new-draft-post', content, '', title, type);
+    let post = new Post(content, summary, title, type, url);
 
     // console.log(lines);
     // console.log(content);

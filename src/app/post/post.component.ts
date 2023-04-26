@@ -11,7 +11,9 @@ import {Post} from "./post";
   styleUrls: ['./post.component.css']
 })
 export class PostComponent {
-  post: Post;
+  @Input() post: Post;
+  @Input() draftPost: boolean;
+
   fullPost: boolean;
 
   constructor(private postService: PostServiceService,
@@ -19,22 +21,24 @@ export class PostComponent {
 
   ngOnInit(){
     console.log("post component")
-    this.route.params.forEach((params: Params) => {
-      console.log(params);
-      if(params['postUrl'] !== undefined) {
-        const url = params['postUrl'];
-        this.fullPost = true;
-        this.postService.getPostByName(url).subscribe((v) => {
-          let p = v.post;
-          let c = v.contents;
-          p.content = c;
-          this.post = p;
-        })
-      } else {
-        this.fullPost = false;
-        this.post = new Post();
-      }
-    })
+    if(typeof this.post == 'undefined' || this.post == null){
+      this.route.params.forEach((params: Params) => {
+        console.log(params);
+        if(params['postUrl'] !== undefined) {
+          const url = params['postUrl'];
+          this.fullPost = true;
+          this.postService.getPostByName(url).subscribe((v) => {
+            let p = v.post;
+            let c = v.contents;
+            p.content = c;
+            this.post = p;
+          })
+        } else {
+          this.fullPost = false;
+          this.post = new Post();
+        }
+      })
+    }
   }
 
 
