@@ -21,8 +21,8 @@ export class DraftPostComponent {
     console.log("post component")
     this.route.params.forEach((params: Params) => {
       console.log(params);
-      if(params['postId'] !== undefined) {
-        const id = params['postId'];
+      if(params['postUrl'] !== undefined) {
+        const id = params['postUrl'];
         this.fullPost = true;
         this.postService.getDraftPost(id).subscribe(v => {
           this.post = v;
