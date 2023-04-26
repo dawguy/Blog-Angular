@@ -1,0 +1,15 @@
+project
+Blog
+david-blog
+The blog project where I create a blog and templating engine form scratch.
+---
+text
+TBH projects might end up with all custom pages.
+---
+text
+I wonder if hyperlinks work as I'd expect them to. <a href="/blog/new-post>new post here</a>
+---
+post
+new-post
+first-post
+---
