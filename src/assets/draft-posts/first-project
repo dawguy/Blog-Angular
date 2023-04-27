@@ -3,13 +3,19 @@ Blog
 david-blog
 The blog project where I create a blog and templating engine form scratch.
 ---
-text
-TBH projects might end up with all custom pages.
+title
+Creating A Blog
 ---
 text
-I wonder if hyperlinks work as I'd expect them to. <a href="/blog/new-post>new post here</a>
+The blog project is an attempt to go through the motions from a low level to both build a piece of software, deploy it, and create a platform for sharing my existing blog posts. In the past I've added pretty much everything I wanted to write about to https://github.com/dawguy/Blog as unstructured .md files. I wanted to create a blog as a way to help me put these into a structured and hopefully helpful for the world format.
+Most of my existing blog posts document the steps I've taken to create hobby projets, and the problem solving I've done encountered while building them.
 ---
-post
-new-post
-first-post
+title
+What's next?
+---
+text
+For right now it'll mostly be writing up content that I think is worth sharing. I'm going to continue using my github Blog project as a store of notes, but should be creating posts here soon too.
+---
+text
+Also possibly to come are some travel related posts as I'll be doing some travelling this year to other parts of the world.
 ---
