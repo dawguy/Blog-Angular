@@ -6,6 +6,7 @@ import {ProjectComponent} from "./project/project.component";
 import {ProjectsComponent} from "./projects/projects.component";
 import {BlogComponent} from "./blog/blog.component";
 import {DraftPostComponent} from "./draft-post/draft-post.component";
+import {BooksComponent} from "./books/books.component";
 
 const routes: Routes = [
   {path: 'home', component: HomepageComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'post/:postUrl', component: PostComponent},
   {path: 'project/:projectUrl', component: ProjectComponent},
   {path: 'projects', component: ProjectsComponent},
+  {path: 'books', component: BooksComponent},
   {path: 'blog', component: BlogComponent}
 ];
 

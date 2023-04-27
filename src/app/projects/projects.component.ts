@@ -10,10 +10,19 @@ import {PostServiceService} from "../post-service.service";
 export class ProjectsComponent {
   posts?: Post[];
   @Input() page: number = 0;
+  hasNextPage: boolean = true;
 
   constructor(private postService: PostServiceService) {}
 
   ngOnInit() {
     this.postService.$recentProjectPosts.subscribe(p => this.posts = p);
+  }
+
+  previousPage(): void {
+
+  }
+
+  nextPage(): void {
+
   }
 }

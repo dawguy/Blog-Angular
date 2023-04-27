@@ -14,6 +14,7 @@ import { BlogComponent } from './blog/blog.component';
 import { ContentBlockComponent } from './content-block/content-block.component';
 import {HttpClientModule} from "@angular/common/http";
 import { DraftPostComponent } from './draft-post/draft-post.component';
+import { BooksComponent } from './books/books.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DraftPostComponent } from './draft-post/draft-post.component';
     RightBarComponent,
     BlogComponent,
     ContentBlockComponent,
-    DraftPostComponent
+    DraftPostComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,

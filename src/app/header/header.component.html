@@ -1,14 +1,28 @@
-<header>
-  <nav>
-    <ul class="flex flex-auto bg-gray-400 py-2 items-end" >
-      <li><a class="px-1 text-3xl underline hover:text-blue-800" routerLink="/home">David Wright</a></li>
+<header class="bg-teal-50 pt-4 pb-4">
+  <nav class="block sm:hidden">
+    <ul class="flex flex-auto py-2 items-end" >
+      <li><a class="px-1 text-3xl underline hover:text-blue-800 roboto" routerLink="/home">David Wright</a></li>
       <!-- Small Screen -->
-      <li><a class="block px-2 text-l underline hover:text-blue-800" routerLink="/blog">Blog</a></li>
-      <li><a class="block px-2 text-l underline hover:text-blue-800" routerLink="/projects">Projects</a></li>
-      <li><a class="block px-2 text-l underline hover:text-blue-800" routerLink="/books">Books</a></li>
+      <li><a class="block px-2 text-l underline hover:text-blue-800 roboto" routerLink="/blog">Blog</a></li>
+      <li><a class="block px-2 text-l underline hover:text-blue-800 roboto" routerLink="/projects">Projects</a></li>
+      <li><a class="block px-2 text-l underline hover:text-blue-800 roboto" routerLink="/books">Books</a></li>
       <!-- Large Screen -->
-      <li><a class="hidden sm:block px-2 text-l underline hover:text-blue-800" href="https://www.github.com/dawguy">Github</a></li>
-      <li><a class="hidden sm:block px-2 text-l underline hover:text-blue-800" routerLink="/resume">Resume</a></li>
+      <li><a class="hidden sm:block px-2 text-l underline hover:text-blue-800 roboto" href="https://www.github.com/dawguy">Github</a></li>
+      <li><a class="hidden sm:block px-2 text-l underline hover:text-blue-800 roboto" routerLink="/resume">Resume</a></li>
     </ul>
+  </nav>
+  <nav class="hidden sm:block bg-teal-50">
+    <div class="flex flex-col space-y-1">
+      <div class="flex flex-auto justify-center">
+        <a class="px-1 text-3xl hover:text-blue-800 roboto" routerLink="/home">David Wright</a>
+      </div>
+      <div class="flex flex-auto space-x-3 justify-center">
+        <a class="text-l hover:text-blue-800 roboto" routerLink="/blog">Blog</a>
+        <a class="text-l hover:text-blue-800 roboto" routerLink="/projects">Projects</a>
+        <a class="text-l hover:text-blue-800 roboto" routerLink="/books">Books</a>
+        <a class="text-l hover:text-blue-800 roboto" href="https://www.github.com/dawguy">Github</a>
+        <a class="text-l hover:text-blue-800 roboto" routerLink="/resume">Resume</a>
+      </div>
+    </div>
   </nav>
 </header>

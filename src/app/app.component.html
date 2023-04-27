@@ -1,14 +1,14 @@
 <div>
   <app-header></app-header>
-  <div class="flex bg-black h-full bg-teal-50">
+  <div class="flex bg-black min-h-screen bg-teal-50">
     <div class="hidden sm:flex sm:basis-1/5">
-      <app-right-bar class="w-full"></app-right-bar>
+      <app-left-bar class="w-full"></app-left-bar>
     </div>
     <div class="px-2 w-full sm:w-3/5">
       <router-outlet></router-outlet>
     </div>
     <div class="hidden sm:flex sm:basis-1/5">
-      <app-left-bar class="w-full"></app-left-bar>
+      <app-right-bar class="w-full"></app-right-bar>
     </div>
   </div>
 </div>

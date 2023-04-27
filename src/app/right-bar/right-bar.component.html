@@ -1,17 +1,21 @@
-<aside id="default-sidebar" class="h-screen">
-  <div class="h-full">
-    <div class="flex flex-col p-2 space-y-2">
-      <div class="py-1 px-2 rounded bg-gray-200">
-        <h1 class="text-xl"><a class="home-link" routerLink="/projects">Projects</a></h1>
-        <div *ngFor="let p of projectPosts">
-          <li class="py-1"><a class="a" routerLink="/project/{{p.url}}">{{p.title}}</a></li>
-        </div>
+<aside id="default-sidebar">
+  <div class="h-full bg-teal-50 mr-2 rounded">
+    <div class="flex flex-col space-y-2">
+      <div class="pb-1 px-2 rounded bg-teal-50">
+        <h1 class="text-xl"><a class="hover:text-blue-800 roboto" routerLink="/projects">Projects</a></h1>
+        <ul class="list-inside list-disc">
+          <li *ngFor="let p of projectPosts">
+            <a class="a" routerLink="/project/{{p.url}}">{{p.title}}</a>
+          </li>
+        </ul>
       </div>
-      <div class="py-1 px-2 rounded bg-gray-200">
-        <h1 class="text-xl"><a class="home-link" routerLink="/blog">Blog Posts</a></h1>
-        <div *ngFor="let b of blogPosts">
-          <li class="py-1"><a class="a" routerLink="/post/{{b.url}}">{{b.title}}</a></li>
-        </div>
+      <div class="py-1 px-2 rounded bg-teal-50">
+        <h1 class="text-xl"><a class="hover:text-blue-800 roboto" routerLink="/blog">Blog Posts</a></h1>
+        <ul class="list-inside list-disc">
+          <li *ngFor="let b of blogPosts">
+            <a class="a" routerLink="/post/{{b.url}}">{{b.title}}</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

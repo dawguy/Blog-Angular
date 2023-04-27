@@ -8,10 +8,25 @@
   @apply underline text-blue-600 hover:text-blue-800
 }
 
-.home-link {
-  @apply underline hover:text-blue-800
-}
-
 p {
   @apply mb-2
+}
+
+.roboto {
+  font-family: 'Roboto Light','sans-serif'
+}
+
+.btn {
+  @apply font-bold py-2 px-4 rounded;
+}
+.btn-blue {
+  @apply bg-blue-500 text-white;
+}
+
+.btn-blue:disabled {
+  @apply bg-gray-500 text-gray-100;
+}
+
+.btn-blue:enabled:hover {
+  @apply bg-blue-700;
 }
