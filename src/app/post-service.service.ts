@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
-import {catchError, map, Observable, of, pipe, share, throwError} from "rxjs";
+import {catchError, map, Observable, of, pipe, share, Subject, tap, throwError} from "rxjs";
 import {Post} from "./post/post";
 import {DraftService} from "./draft.service";
 import {Content} from "./content-block/content";
@@ -16,10 +16,22 @@ export class PostServiceService {
   $recentBlogPosts : Observable<Post[]>;
   $recentProjectPosts : Observable<Post[]>;
 
+  $postLookup : Subject<{data: Post[], hasMore: boolean}> = new Subject();
+
+  posts : {
+            [type: string]: {
+              [page: number]: {
+                data: Post[],
+                hasMore: boolean,
+              }
+            }
+          } = {};
+  limit : number = 10;
+
   constructor(private http: HttpClient,
               private draftService: DraftService) {
-    this.$recentBlogPosts = this.getRecentPosts("blog").pipe(share());
-    this.$recentProjectPosts = this.getRecentPosts("project").pipe(share());
+    this.$recentBlogPosts = this.getRecentPosts("blog");
+    this.$recentProjectPosts = this.getRecentPosts("project");
   }
 
   getPostById(postId: string): Observable<Post> {
@@ -48,20 +60,50 @@ export class PostServiceService {
       .pipe(map( data => data), catchError(this.handleError));
   }
 
-  getRecentPosts(type?: string, page?: number): Observable<Post[]> {
+  getRecentPosts(type?: string): Observable<Post[]> {
     let httpParams = new HttpParams();
     if(type && type != "all"){
       httpParams = httpParams.append("type", type);
-    }
-    if(page){
-      httpParams = httpParams.append("page", page);
     }
 
     return this.http
       .get<Post[]>(`${this.backendUrl}/post/recent`, {
         params: httpParams
       })
-      .pipe(map(data => data), catchError(this.handleError));
+      .pipe(map(data => data.slice(0, this.limit)), catchError(this.handleError))
+  }
+
+  getPosts(type?: string, page?: number): void {
+    const t = type ?? 'all';
+    const p = page ?? 0;
+
+    // https://github.com/tc39/proposal-optional-chaining
+    if(this.posts?.[t]?.[p]){
+      console.log(`Returning cached data for ${t} at page ${p}.`)
+      this.$postLookup.next(this.posts[t][p]);
+      return;
+    }
+
+    let httpParams = new HttpParams()
+      .append("type", t)
+      .append("page", p);
+
+    this.http
+      .get<Post[]>(`${this.backendUrl}/post/recent`, {
+        params: httpParams
+      })
+      .pipe(map(data => data), catchError(this.handleError))
+      .subscribe(data => {
+        if(typeof this.posts[t] == 'undefined' || this.posts[t] == null){
+          this.posts[t] = {};
+        }
+        this.posts[t][p] = {
+          data: data.slice(0, this.limit),
+          hasMore: data.length >= this.limit,
+        };
+
+        this.$postLookup.next(this.posts[t][p]);
+      });
   }
 
   savePost(postText: string): Observable<any> {

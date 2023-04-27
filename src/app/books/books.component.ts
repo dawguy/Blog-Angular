@@ -12,17 +12,24 @@ export class BooksComponent {
   @Input() page: number = 0;
   hasNextPage: boolean = true;
 
-  constructor(private postService: PostServiceService) {
-    this.postService.getRecentPosts("book").subscribe(p => this.posts = p);
+  constructor(private postService: PostServiceService) {}
+
+  ngOnInit() {
+    this.postService.$postLookup.subscribe(v => {
+      this.posts = v.data;
+      this.hasNextPage = v.hasMore;
+    });
+    this.postService.getPosts("book", this.page);
   }
 
-  ngOnInit() {}
-
   previousPage(): void {
-
+    this.page -= 1;
+    this.postService.getPosts("book", this.page);
+    window.scroll(0,0);
   }
 
   nextPage(): void {
-
+    this.postService.getPosts("book", this.page);
+    window.scroll(0,0);
   }
 }

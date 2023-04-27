@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Post} from "../post/post";
 import {PostServiceService} from "../post-service.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-blog',
@@ -12,17 +13,25 @@ export class BlogComponent {
   @Input() page: number = 0;
   hasNextPage: boolean = true;
 
-  constructor(private postService: PostServiceService) {
-    this.postService.$recentBlogPosts.subscribe(p => this.posts = p);
+  constructor(private postService: PostServiceService) {}
+
+  ngOnInit() {
+    this.postService.$postLookup.subscribe(v => {
+      this.posts = v.data;
+      this.hasNextPage = v.hasMore;
+    });
+    this.postService.getPosts('blog', this.page);
   }
 
-  ngOnInit() {}
-
   previousPage(): void {
-
+    this.page -= 1;
+    this.postService.getPosts('blog', this.page);
+    window.scroll(0,0);
   }
 
   nextPage(): void {
-
+    this.page += 1;
+    this.postService.getPosts('blog', this.page);
+    window.scroll(0,0);
   }
 }
