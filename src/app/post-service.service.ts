@@ -73,7 +73,7 @@ export class PostServiceService {
       .pipe(map(data => data.slice(0, this.limit)), catchError(this.handleError))
   }
 
-  getPosts(type?: string, page?: number): void {
+  getPosts(type?: string, page?: number): Observable<{data: Post[], hasMore: boolean}> {
     const t = type ?? 'all';
     const p = page ?? 0;
 
@@ -81,29 +81,33 @@ export class PostServiceService {
     if(this.posts?.[t]?.[p]){
       console.log(`Returning cached data for ${t} at page ${p}.`)
       this.$postLookup.next(this.posts[t][p]);
-      return;
+      return of(this.posts[t][p]);
     }
 
     let httpParams = new HttpParams()
       .append("type", t)
       .append("page", p);
 
-    this.http
+    return this.http
       .get<Post[]>(`${this.backendUrl}/post/recent`, {
         params: httpParams
       })
-      .pipe(map(data => data), catchError(this.handleError))
-      .subscribe(data => {
+      .pipe(map((data) => {
+        return {
+            data: data.slice(0, this.limit),
+            hasMore: data.length > this.limit,
+        }
+      }), catchError(this.handleError))
+      .pipe(tap(v => {
         if(typeof this.posts[t] == 'undefined' || this.posts[t] == null){
           this.posts[t] = {};
         }
         this.posts[t][p] = {
-          data: data.slice(0, this.limit),
-          hasMore: data.length >= this.limit,
+          data: v.data.slice(0, this.limit),
+          hasMore: v.data.length >= this.limit,
         };
-
-        this.$postLookup.next(this.posts[t][p]);
-      });
+        return v;
+      }));
   }
 
   savePost(postText: string): Observable<any> {

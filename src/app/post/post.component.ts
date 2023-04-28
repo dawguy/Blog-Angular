@@ -21,18 +21,18 @@ export class PostComponent {
 
   ngOnInit(){
     console.log("post component")
+
+    this.route.data.subscribe(({data}) => {
+      let p = data.post;
+      let c = data.contents;
+      p.content = c;
+      this.post = p;
+    });
     if(typeof this.post == 'undefined' || this.post == null){
       this.route.params.forEach((params: Params) => {
         console.log(params);
         if(params['postUrl'] !== undefined) {
-          const url = params['postUrl'];
           this.fullPost = true;
-          this.postService.getPostByName(url).subscribe((v) => {
-            let p = v.post;
-            let c = v.contents;
-            p.content = c;
-            this.post = p;
-          })
         } else {
           this.fullPost = false;
           this.post = new Post();
