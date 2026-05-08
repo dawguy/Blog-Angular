@@ -32,7 +32,7 @@ services:
   # ── Phoenix / bidirectional translations ──
 
   bidirectional-translations:
-    image: bloodisblue/bidirectional-translations:1.0.0
+    image: bloodisblue/bidirectional-translations:1.0
     restart: unless-stopped
     environment:
       - DATABASE_URL

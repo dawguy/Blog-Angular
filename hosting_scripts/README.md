@@ -54,7 +54,8 @@ Every time you push code changes:
 **Step 1 — On your laptop:** Build the Docker image and push to Docker Hub.
 
 ```bash
-./build-and-push.sh 1.0.2    # use a new version number each time
+cd ~/code/bidirectional_translations
+./deploy.sh 1.0.2    # use a new version number each time
 ```
 
 **Step 2 — On your droplet:** Pull the image, restart, and run migrations.
@@ -77,7 +78,6 @@ The existing sites (Angular frontend, Node backend, kelly-criterion) use pre-bui
 | `nginx/nginx.conf` | Reverse proxy routing all domains |
 | `.env.example` | Template for secrets — copy to `.env` on the droplet |
 | `.env` | Actual secrets — **never commit this** |
-| `build-and-push.sh` | Run on laptop to build + push the Phoenix Docker image |
 | `deploy.sh` | Run on droplet to pull images, restart, and run migrations |
 
 ## Troubleshooting
