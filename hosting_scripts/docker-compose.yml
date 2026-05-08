@@ -38,5 +38,6 @@ services:
       - DATABASE_URL
       - SECRET_KEY_BASE
       - PHX_HOST
+      - RESEND_API_KEY
       - PHX_SERVER=true
       - POOL_SIZE=2
