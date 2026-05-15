@@ -10,7 +10,7 @@ import {Content} from "./content-block/content";
 })
 export class PostServiceService {
 
-  public backendUrl = 'http://localhost:8888';
+  public backendUrl = 'http://wrightdavid.com/api';
   public draftPostUrl = '/assets/draft-posts';
 
   $recentBlogPosts : Observable<Post[]>;
